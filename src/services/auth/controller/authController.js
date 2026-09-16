@@ -41,12 +41,13 @@ export class AuthController {
       //     maxAge: config.cookie.expiresIn
       // });
 
-      res.cookie("authToken", token, {
-        httpOnly: true,
-        secure: true, // Required for HTTPS on Render
-        sameSite: "none", // Required because Vercel and Render are different domains
-        maxAge: config.cookie?.expiresIn || 24 * 60 * 60 * 1000,
-      });
+      // res.cookie("authToken", token, {
+      //   httpOnly: true,
+      //   secure: true, // Required for HTTPS on Render
+      //   sameSite: "none",
+      //   partitioned: true, // Required because Vercel and Render are different domains
+      //   maxAge: config.cookie?.expiresIn || 24 * 60 * 60 * 1000,
+      // });
 
       res
         .status(201)
@@ -86,12 +87,13 @@ export class AuthController {
       //     maxAge: config.cookie.expiresIn,
       //   });
 
-      res.cookie("authToken", token, {
-        httpOnly: true,
-        secure: true, // Required for HTTPS on Render
-        sameSite: "none", // Required because Vercel and Render are different domains
-        maxAge: config.cookie?.expiresIn || 24 * 60 * 60 * 1000,
-      });
+      // res.cookie("authToken", token, {
+      //   httpOnly: true,
+      //   secure: true, // Required for HTTPS on Render
+      //   sameSite: "none", 
+      //   partitioned: true,// Required because Vercel and Render are different domains
+      //   maxAge: config.cookie?.expiresIn || 24 * 60 * 60 * 1000,
+      // });
 
       res
         .status(201)
@@ -120,18 +122,21 @@ export class AuthController {
       //     maxAge: config.cookie.expiresIn,
       //   });
 
-      res.cookie("authToken", token, {
-        httpOnly: true,
-        secure: true, // Required for HTTPS on Render
-        sameSite: "none", // Required because Vercel and Render are different domains
-        maxAge: config.cookie?.expiresIn || 24 * 60 * 60 * 1000,
-      });
+      // res.cookie("authToken", token, {
+      //   httpOnly: true,
+      //   secure: true, // Required for HTTPS on Render
+      //   sameSite: "none",
+      //   partitioned: true, // Required because Vercel and Render are different domains
+      //   maxAge: config.cookie?.expiresIn || 24 * 60 * 60 * 1000,
+      // });
 
-      res
-        .status(200)
-        .json(
-          ResponseFormatter.success(user, "User LoggedIn successfully", 200),
-        );
+      // res
+      //   .status(200)
+      //   .json(
+      //     ResponseFormatter.success(user, "User LoggedIn successfully", 200),
+      //   );
+
+      res.status(200).json(ResponseFormatter.success({ user, token }, "User LoggedIn successfully", 200));
     } catch (error) {
       next(error);
     }
